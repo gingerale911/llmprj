@@ -14,15 +14,21 @@ model = genai.GenerativeModel("models/gemini-1.5-flash-8b")
 
 app = FastAPI()
 
+
 class QuestionRequest(BaseModel):
-question: str
+	question: str
+
 
 @app.get("/")
 async def hello():
-return {"hello": "world"}
+	return {"hello": "world"}
+
 
 @app.post("/")
 async def answer_with_llm(request: QuestionRequest):
-text = request.question
-resp = model.generate_content(text)
-return JSONResponse([resp.text])
+	text = request.question
+	try:
+		resp = model.generate_content(text)
+		return JSONResponse([resp.text])
+	except Exception as e:
+		return JSONResponse({"error": str(e)}, status_code=500)
