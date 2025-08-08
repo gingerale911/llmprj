@@ -5,6 +5,7 @@ load_dotenv()  # load environment variables from .env file
 print('GOOGLE_API_KEY:', os.getenv('GOOGLE_API_KEY'))
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import google.generativeai as genai
 
@@ -12,7 +13,17 @@ import google.generativeai as genai
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel("models/gemini-1.5-flash-8b")
 
+
 app = FastAPI()
+
+# Add CORS middleware to allow requests from any origin
+app.add_middleware(
+	CORSMiddleware,
+	allow_origins=["*"],
+	allow_credentials=True,
+	allow_methods=["*"],
+	allow_headers=["*"],
+)
 
 
 class QuestionRequest(BaseModel):
