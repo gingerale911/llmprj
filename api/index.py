@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()  # load environment variables from .env file
+print('GOOGLE_API_KEY:', os.getenv('GOOGLE_API_KEY'))
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
