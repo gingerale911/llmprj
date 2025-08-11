@@ -43,3 +43,8 @@ async def answer_with_llm(request: QuestionRequest):
 		return JSONResponse([resp.text])
 	except Exception as e:
 		return JSONResponse({"error": str(e)}, status_code=500)
+	
+
+#curl -X POST https://web-production-dad2a.up.railway.app/ \
+# -H "Content-Type: application/json" \
+#  -d '{"question": "What is the capital of France?"}'
