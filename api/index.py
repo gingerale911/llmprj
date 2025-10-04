@@ -66,7 +66,7 @@ async def answer_with_llm(request: QuestionRequest):
 	# Always ask LLM if scraping is needed and for the URL
 	prompt = (
 		"Given the user's question, if it requires web scraping (e.g., contains a URL or asks for live data), "
-		"respond ONLY with a JSON object: {\"scrape\": true, \"url\": \"<url to scrape>\"}. "
+		"respond ONLY with a valid JSON object: {\"scrape\": true, \"url\": \"<url to scrape>\"}. "
 		"If not, respond ONLY with a JSON object: {\"scrape\": false, \"answer\": \"<your answer>\"}. "
 		"Do not include any other text. Question: " + text
 	)
