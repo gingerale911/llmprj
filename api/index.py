@@ -11,7 +11,7 @@ import google.generativeai as genai
 
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-model = genai.GenerativeModel("models/gemini-1.5-flash-8b")
+model = genai.GenerativeModel("models/gemini-2.5-pro")
 
 
 app = FastAPI()
